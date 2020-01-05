@@ -29,7 +29,7 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.only(top: 15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -51,9 +51,6 @@ class _ProductScreenState extends State<ProductScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: Image(
@@ -61,7 +58,6 @@ class _ProductScreenState extends State<ProductScreen> {
                       image: AssetImage(widget.product.imageUrl),
                     ),
                   ),
-                  SizedBox(height: 15.0),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0),
                     child: Row(
@@ -89,7 +85,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 05.0,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0),
@@ -123,7 +119,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 05.0,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0, right: 10.0),
