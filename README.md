@@ -1,4 +1,4 @@
-# estore
+# E Store
 
 Flutter UI Tutorial - E Store
 
