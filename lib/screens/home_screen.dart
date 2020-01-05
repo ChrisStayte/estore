@@ -1,6 +1,7 @@
 import 'package:estore/widgets/products_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -9,6 +10,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentTab = 0;
+
+  ImageProvider image = AssetImage('assets/images/exclusivewatch.png');
+
+  PaletteGenerator palletGenerator;
+
+  Future<void> _getDominantImageColor() async {
+    palletGenerator = await PaletteGenerator.fromImageProvider(image);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    _getDominantImageColor();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +52,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 25.0,
-            ),
+            SizedBox(height: 25.0),
             ProductsCarousel(),
+            SizedBox(height: 15.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Container(
+                height: 360.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        palletGenerator == null
+                            ? Colors.black
+                            : palletGenerator.dominantColor.color
+                                .withOpacity(0.6),
+                        Colors.white.withOpacity((0.2))
+                      ]),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0.0, 2.0),
+                        blurRadius: 1.0),
+                  ],
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Center(
+                      child: Image(
+                        image: image,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 32,
+                      left: 25,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Exclusive Watch",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18.0),
+                          ),
+                          Text(
+                            "Explore",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 16.0),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
